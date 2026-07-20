@@ -7,7 +7,6 @@ const dns = require('dns');
 dns.setServers(['1.1.1.1', '8.8.8.8']);
 
 process.on('uncaughtException', (err) => {
- 
   process.exit(1);
 });
 
@@ -30,16 +29,12 @@ mongoose
 const { type } = require('os');
 const app = require('./app');
 
-
-
-const port = process.env.port || 3000;
+const port = process.env.PORT || 3000;
 const server = app.listen(port, () => {
-  // app.listen(port, () => {
   console.log(`App running on port ${port}...`);
 });
 
 process.on('unhandledRejection', (err) => {
-
   server.close(() => {
     process.exit(1);
   });
